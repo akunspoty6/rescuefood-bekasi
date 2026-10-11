@@ -178,17 +178,38 @@
                 </div>
             </div>
 
-            <!-- SEGMENTED ROLE CONTROLLER -->
-            <div class="segmented-control">
-                <button class="segmented-btn active" id="btnRoleCustomer" onclick="switchRole('customer')">
-                    <i class="bi bi-bag me-1"></i> Penyelamat
-                </button>
-                <button class="segmented-btn" id="btnRoleMerchant" onclick="switchRole('merchant')">
-                    <i class="bi bi-shop me-1"></i> Kasir Mitra
-                </button>
-                <button class="segmented-btn" id="btnRoleDkpp" onclick="switchRole('dkpp')">
-                    <i class="bi bi-shield-check me-1"></i> DKPP & ESG
-                </button>
+            <div class="d-flex align-items-center gap-3">
+                <!-- SEGMENTED ROLE CONTROLLER -->
+                <div class="segmented-control d-none d-md-inline-flex">
+                    <button class="segmented-btn active" id="btnRoleCustomer" onclick="switchRole('customer')">
+                        <i class="bi bi-bag me-1"></i> Penyelamat
+                    </button>
+                    <button class="segmented-btn" id="btnRoleMerchant" onclick="switchRole('merchant')">
+                        <i class="bi bi-shop me-1"></i> Kasir Mitra
+                    </button>
+                    <button class="segmented-btn" id="btnRoleDkpp" onclick="switchRole('dkpp')">
+                        <i class="bi bi-shield-check me-1"></i> DKPP & ESG
+                    </button>
+                </div>
+
+                <!-- USER AUTH STATUS -->
+                @auth
+                    <div class="d-flex align-items-center gap-2 ps-2 border-start" style="border-color: var(--border-subtle) !important;">
+                        <div class="text-end d-none d-sm-block">
+                            <span class="small fw-semibold text-white d-block leading-tight" style="font-size: 13px;">{{ Auth::user()->name }}</span>
+                            <span class="badge-subtle text-uppercase" style="font-size: 9px;">{{ Auth::user()->role }}</span>
+                        </div>
+                        <a href="/logout" class="btn btn-sm btn-outline-danger rounded-2 px-2 py-1" title="Keluar">
+                            <i class="bi bi-box-arrow-right"></i>
+                        </a>
+                    </div>
+                @else
+                    <div class="d-flex align-items-center gap-2">
+                        <a href="/login" class="btn btn-sm btn-emerald px-3">
+                            <i class="bi bi-person-fill me-1"></i> Masuk
+                        </a>
+                    </div>
+                @endauth
             </div>
         </div>
     </nav>
